@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/image_poster"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="110dp"
+        android:layout_height="130dp"
         android:scaleType="fitXY"/>
     
     <TextView
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/text_title"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_toRightOf="@id/image_poster"
         android:ellipsize="end"
         android:maxLines="3"

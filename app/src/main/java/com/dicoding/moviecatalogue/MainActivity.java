@@ -1,21 +1,61 @@
 package com.dicoding.moviecatalogue;
 
+import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String[] titleMovie = {"Green Book","Robin Hood","Bumblebee","Wild and Free","A Star Is Born","Black Panther","Deadpool 2","Aquaman"};
+    private String[] titleMovie;
+    private String[] dataDescription;
+    private TypedArray dataPoster;
+    private FilmAdapter adapter;
+    private ArrayList<Film> films;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        adapter = new FilmAdapter(this);
         ListView listView = findViewById(R.id.lv_listview);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, android.R.id.text1, titleMovie);
         listView.setAdapter(adapter);
+
+        prepare();
+        addItem();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, films.get(position).getTitle(),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void prepare() {
+        titleMovie = getResources().getStringArray(R.array.title_moviie);
+        dataDescription = getResources().getStringArray(R.array.data_description);
+        dataPoster = getResources().obtainTypedArray(R.array.data_poster);
+    }
+
+    private void addItem() {
+        films = new ArrayList<>();
+
+        for (int i = 0; i < titleMovie.length; i++) {
+                Film film = new Film();
+                film.setPoster(dataPoster.getResourceId(i, -1));
+                film.setTitle(titleMovie[i]);
+                film.setDescription(dataDescription[i]);
+                films.add(film);
+        }
+        adapter.setFilm(films);
     }
 }
