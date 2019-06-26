@@ -8,8 +8,8 @@
         android:id="@+id/image_poster"
         android:layout_width="110dp"
         android:layout_height="130dp"
-        android:scaleType="fitXY"/>
-    
+        android:scaleType="fitXY" />
+
     <TextView
         android:id="@+id/text_title"
         android:layout_width="wrap_content"
@@ -17,8 +17,8 @@
         android:layout_marginStart="25dp"
         android:layout_toEndOf="@+id/image_poster"
         android:text="@string/name_film"
-        android:textSize="18dp"
-        android:textStyle="bold"/>
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text_desc"
@@ -30,6 +30,6 @@
         android:layout_toRightOf="@id/image_poster"
         android:ellipsize="end"
         android:maxLines="3"
-        android:text="@string/description"/>
+        android:text="@string/description" />
 
 </RelativeLayout>

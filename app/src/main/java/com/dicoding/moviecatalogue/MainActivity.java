@@ -1,15 +1,14 @@
 package com.dicoding.moviecatalogue;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -34,8 +33,14 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(MainActivity.this, films.get(position).getTitle(),Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Toast.makeText(MainActivity.this, films.get(position).getTitle(), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                intent.putExtra(DetailActivity.EXTRA_FILM, films.get(position));
+
+
+                startActivity(intent);
             }
         });
     }
@@ -50,11 +55,11 @@ public class MainActivity extends AppCompatActivity {
         films = new ArrayList<>();
 
         for (int i = 0; i < titleMovie.length; i++) {
-                Film film = new Film();
-                film.setPoster(dataPoster.getResourceId(i, -1));
-                film.setTitle(titleMovie[i]);
-                film.setDescription(dataDescription[i]);
-                films.add(film);
+            Film film = new Film();
+            film.setPoster(dataPoster.getResourceId(i, -1));
+            film.setTitle(titleMovie[i]);
+            film.setDescription(dataDescription[i]);
+            films.add(film);
         }
         adapter.setFilm(films);
     }

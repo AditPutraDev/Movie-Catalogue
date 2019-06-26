@@ -2,7 +2,8 @@
     <string name="app_name">Movie Catalogue</string>
     <string name="name_film">Title Film</string>
     <string name="description">Description</string>
-    
+    <string name="title">Title</string>
+
     <string-array name="title_moviie">
         <item>A Star is Born</item>
         <item>Aquaman</item>
